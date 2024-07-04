@@ -332,7 +332,7 @@ int main(void) {
                 bool encontrado = false;
                 for (auto& voo : voos) {
                     if (voo.getCodigo() == cod && voo.getStatus() == EMVOO) {
-                        voo.finalizarVoo();
+                        voo.finalizarVoo(); //Rever se está chamando a função corretamente.
                         encontrado = true;
                         cout << "O voo finalizado com sucesso!" << endl;
                         break;
@@ -368,7 +368,7 @@ int main(void) {
                                 cout << "Status: Indisponível" << endl;
                             }
                             break;
-                            
+
                             case MORTO:
                             cout << "Status: Morto" << endl;
                             break;

@@ -45,6 +45,7 @@ void Voo::lancarVoo() {
             astronauta.mataAstro();
             cout << "O astronauta " << astronauta.getNome() << " morreu..." << endl;
             Cemiterio::adicionarMorto(astronauta);
+
         }
     } else {
         status = EMVOO;
@@ -75,15 +76,24 @@ void Voo::removerPassageiro(const string& cpf) {
         }
     }
 }
+void Voo::finalizarVoo() { //Dividir essa função em dois. Chamar uma para quando o voo for destruido e outra quando o voo for finalizado.
+    if (status == DESTRUIDO) {
+        cout << "O voo foi destruído em curso." << endl;
+        for (auto& astronauta : passageiros) {
+            astronauta.mataAstro();
+            cout << "O astronauta " << astronauta.getNome() << " morreu..." << endl;
+            Cemiterio::adicionarMorto(astronauta);
+        }
+    } else {
+        cout << "O voo pousou em " << destino << "." << endl;
+        status = PLANEJANDO;
 
-void Voo::finalizarVoo() {
-    status = PLANEJANDO;
-    dispo = true;
-
-    cout << "O voo pousou de " << destino << endl;
-
-    for (auto& passageiro : passageiros) {
-        passageiro.setDisponivel();
+        // Marcar todos os passageiros como disponíveis novamente
+        for (auto& passageiro : passageiros) {
+            passageiro.setDisponivel();
+        }
     }
-    passageiros.clear();
+
+    dispo = true;
+    passageiros.clear(); // Limpar a lista de passageiros após finalizar o voo
 }
