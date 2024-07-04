@@ -36,11 +36,11 @@ void Voo::adicionarPassageiro(const Astronauta& astronauta) {
 
 void Voo::lancarVoo() {
     srand(time(nullptr));
-    int numAleatorio = rand() % 2; // Número entre 1 e 0 para que seja aleatória a destruição do voo ou seu sucesso
+    int numAleatorio = rand() % 2;
 
     if (numAleatorio == 0) {
         status = DESTRUIDO;
-        cout << "O Voo de codigo " << codigoVoo << " foi explodido." << endl;
+        cout << "O voo de codigo " << codigoVoo << " foi explodido em seu curso." << endl;
         for (auto& astronauta : passageiros) {
             astronauta.mataAstro();
             cout << "O astronauta " << astronauta.getNome() << " morreu..." << endl;
@@ -48,7 +48,7 @@ void Voo::lancarVoo() {
         }
     } else {
         status = EMVOO;
-        cout << "O Voo de codigo " << codigoVoo << " esta a caminho de " << destino << endl;
+        cout << "O voo de codigo " << codigoVoo << " está a caminho de " << destino << endl;
     }
 
     dispo = false;
@@ -77,8 +77,8 @@ void Voo::removerPassageiro(const string& cpf) {
 }
 
 void Voo::finalizarVoo() {
-    status = PLANEJANDO; // definir o status do voo como planejando novamente
-    dispo = true; // tornar o voo disponível novamente
+    status = PLANEJANDO;
+    dispo = true;
 
     cout << "O voo pousou de " << destino << endl;
 
@@ -86,7 +86,5 @@ void Voo::finalizarVoo() {
     for (auto& passageiro : passageiros) {
         passageiro.setDisponivel();
     }
-    
-    // Limpar a lista de passageiros, já que o voo foi finalizado
     passageiros.clear();
 }
