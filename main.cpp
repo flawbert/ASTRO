@@ -32,7 +32,6 @@ opcoes.push_back("**************************************************************
         cout << frase << endl;
     }
     cout << endl;
-    cout << endl;
 }
 
 int main(void) {
@@ -211,7 +210,7 @@ int main(void) {
                 for (auto& voo : voos) {
                     if (voo.getCodigo() == cod && voo.getStatus() == PLANEJANDO) {
                         encontrado = true;
-                        cout << "Passageiros do voo [" << cod << "]:" << endl;
+                        cout << "Passageiros do voo " << cod << ":" << endl;
                         cout << endl;
                         voo.visualizarPassageiros(astronautas);
                         cout << endl;
@@ -227,10 +226,10 @@ int main(void) {
                             for (auto& astronauta : astronautas) {
                                 if (astronauta.getCPF() == cpfAstronauta) {
                                     astronauta.setDisponivel(); 
-                                    auto& historico = astronauta.getHistoricoVoos(); // Obtém uma referência constante ao histórico de voos
-                                    list<int> historicoModificado = historico; // Faz uma cópia do histórico de voos
-                                    historicoModificado.remove(cod); // Remove o código do voo da cópia
-                                    astronauta.setHistoricoVoos(historicoModificado); // Atualiza o histórico de voos do astronauta com a cópia modificada
+                                    auto& historico = astronauta.getHistoricoVoos(); 
+                                    list<int> historicoModificado = historico; 
+                                    historicoModificado.remove(cod);
+                                    astronauta.setHistoricoVoos(historicoModificado);
                                     break;
                                 }
                             }
@@ -360,8 +359,21 @@ int main(void) {
                         cout << "Nome: " << astronauta.getNome() << endl;
                         cout << "CPF: " << astronauta.getCPF() << endl;
                         cout << "Idade: " << astronauta.getIdade() << endl;
-                        if (astronauta.getDisponibilidade()) cout << "Status: Disponivel" << endl;
-                        else cout << "Status: Indisponivel" << endl;
+                        switch (astronauta.getStatus()) {
+                            case VIVO:
+                            if (astronauta.getDisponibilidade()) {
+                                cout << "Status: Disponível" << endl;
+                            }
+                            else {
+                                cout << "Status: Indisponível" << endl;
+                            }
+                            break;
+                            
+                            case MORTO:
+                            cout << "Status: Morto" << endl;
+                            break;
+                        }
+
                         cout << "Último voo cadastrado: ";
                         if (astronauta.getHistoricoVoos().empty()) {
                             cout << "O astronauta não foi cadastrado em nenhum voo anteriormente." << endl;

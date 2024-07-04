@@ -82,7 +82,6 @@ void Voo::finalizarVoo() {
 
     cout << "O voo pousou de " << destino << endl;
 
-    // Marcar todos os passageiros como disponíveis novamente
     for (auto& passageiro : passageiros) {
         passageiro.setDisponivel();
     }

@@ -25,6 +25,7 @@ bool Astronauta::getDisponibilidade() {
 
 void Astronauta::mataAstro() {
     status = MORTO;
+    dispo = false;
 }
 
 void Astronauta::setDisponivel() {
