@@ -1,49 +1,39 @@
 #include "astronauta.hpp"
 #include "enum/astronautaenum.hpp"
 
-Astronauta::Astronauta(const string& cpf, const string& nome, int idade)  // Construtor da classe Astronauta
+Astronauta::Astronauta(const string& cpf, const string& nome, int idade)
     : cpf(cpf), nome(nome), idade(idade) {}
 
-string Astronauta::getCPF() const {  // Método que retorna o cpf do astronauta
+string Astronauta::getCPF() const {
     return cpf;
 }
-
-string Astronauta::getNome() const { // Método que retorna o nome do astronauta
+string Astronauta::getNome() const {
     return nome;
 }
-
-int Astronauta::getIdade() const {  // Método que retorna a idade do astronauta
+int Astronauta::getIdade() const {
     return idade;
 }
-
-AstronautaEnum Astronauta::getStatus() {  // Método que retorna o status do astronauta (vivo ou morto)
+AstronautaEnum Astronauta::getStatus() {
     return status;
 }
-
-bool Astronauta::getDisponibilidade() {  // Método que retorna a disponibilidade do astronauta
+bool Astronauta::getDisponibilidade() {
     return dispo;
 }
-
-void Astronauta::mataAstro() {  // Método que muda o status do astronauta (vivo -> morto)
+void Astronauta::mataAstro() {
     status = MORTO;
 }
-
-void Astronauta::setDisponivel() {  // Método que muda a disponibilidade do astronauta (true or false -> true)
+void Astronauta::setDisponivel() {
     dispo = true;
 }
-
-void Astronauta::setIndisponivel() {  // Método que muda a disponibilidade do astronauta (true or false -> false)
+void Astronauta::setIndisponivel() {
     dispo = false;
 }
-
-void Astronauta::adicionarVoo(int codigoVoo) {  // Método que adiciona o código do voo ao final da lista de voos em que já foi inserido
+void Astronauta::adicionarVoo(int codigoVoo) {
     historicoVoos.push_back(codigoVoo);
 }
-
-const list<int>& Astronauta::getHistoricoVoos() const {  // Método que retorna a lista de voos em que já foi inserido
+const list<int>& Astronauta::getHistoricoVoos() const {
     return historicoVoos;
 }
-
-void Astronauta::setHistoricoVoos(const list<int>& novoHistorico) {  // Método que atualiza a lista de voos em que já foi inserido
+void Astronauta::setHistoricoVoos(const list<int>& novoHistorico) {
     historicoVoos = novoHistorico;
 }

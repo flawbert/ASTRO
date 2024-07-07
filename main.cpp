@@ -149,17 +149,17 @@ int main(void) {
                             bool astroFind = false;
                             for (auto& astronauta : astronautas) {
                                 if (astronauta.getCPF() == cpfAstronauta && astronauta.getStatus() == VIVO && astronauta.getDisponibilidade()) {
-                                    it->adicionarPassageiro(astronauta); // Adicionar passageiro ao voo encontrado
+                                    it->adicionarPassageiro(astronauta);
                                     astronauta.adicionarVoo(it->getCodigo());
                                     astronauta.setIndisponivel();
-                                    astroFind = true; // Atualizar astroFind
+                                    astroFind = true;
                                     break;
                                 }
                                 else if (astronauta.getCPF() == cpfAstronauta && astronauta.getStatus() == MORTO){
-                                    cout << "O astronauta morreu em missão. " << endl; // Verifica se o astronauta está morto
+                                    cout << "O astronauta morreu em missão. " << endl;
                                 }
                                 else if (astronauta.getCPF() == cpfAstronauta && !astronauta.getDisponibilidade()) {
-                                    cout << "Astronauta indisponível. " << endl; // Verifica se o astronauta está indisponivel
+                                    cout << "Astronauta indisponível. " << endl;
                                 }
                             }
                             if (astroFind) {
@@ -284,24 +284,23 @@ int main(void) {
                         break;
                     }
                     else if (it->getCodigo() == cod && it->getStatus() == EMVOO) {
-                        cout << "O voo ja foi lancado anteriormente." << endl;
-                        cout << "O voo está a caminho de  " << it->getDestino() << endl;
+                        cout << "O voo já havia sido lançado. Tente outro." << endl;
+                        cout << "O voo está em seu curso para " << it->getDestino() << endl;
                         break;
                     }
                     else if (it->getCodigo() == cod && it->getStatus() == DESTRUIDO) {
-                        cout << "O voo foi explodido. Perca total." << endl;
+                        cout << "O voo foi explodido. A ASTRO lamenta o ocorrido." << endl;
                         break;
                     }
                 }
-
                 if (!encontrado) {
-                    cout << "O voo nao foi encontrado! Tente novamente!" << endl;
+                    cout << "O voo não foi encontrado! Tente novamente!" << endl;
                 }
                 break;
             }
 
             case 7: {
-                cout << "Voos disponiveis para serem finalizados: " << endl;
+                cout << "Voos disponíveis para serem finalizados: " << endl;
                 for (const auto& voo : voos) {
                     if (voo.getStatus() == EMVOO) {
                         cout << "Código de Voo: " << voo.getCodigo() << endl;
@@ -314,7 +313,7 @@ int main(void) {
                 bool encontrado = false;
                 for (auto& voo : voos) {
                     if (voo.getCodigo() == cod && voo.getStatus() == EMVOO) {
-                        voo.finalizarVoo(astronautas); //Rever se está chamando a função corretamente.
+                        voo.finalizarVoo(astronautas);
                         encontrado = true;
                         cout << "O voo finalizado com sucesso!" << endl;
                         break;
@@ -371,12 +370,16 @@ int main(void) {
                     cout << "   O astronauta " << astronauta.getNome() << " morreu em missão. A ASTRO será eternamente grata por seus serviços. " << endl;
                     cout << "   Aqui esta a lista de voos em que ele participou:" << endl;
                     cout << endl;
+                    bool primeiroVoo = true;
                     for (const auto& cods : astronauta.getHistoricoVoos()) {
-                        cout << "    Voo " << cods << endl;
+                        if(!primeiroVoo){
+                            cout << "   ";
+                        }
+                        cout << "    *Voo " << cods << endl;
+                        primeiroVoo = false;
                     }
                     cout << endl;
                 }
-                cout << endl;
                 break;
             }
             default:
