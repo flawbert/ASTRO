@@ -4,13 +4,11 @@
 #include <iostream>
 #include <list>
 #include <string>
+#include "enum/astronautaenum.hpp"
 
 using namespace std;
 
-enum astroStatus {
-    VIVO,
-    MORTO,
-};
+
 
 class Astronauta {
 private:
@@ -18,7 +16,7 @@ private:
     string nome;
     int idade;
     bool dispo = true;
-    astroStatus status = VIVO;
+    AstronautaEnum status = VIVO;
     list<int> historicoVoos;
 
 public:
@@ -27,7 +25,7 @@ public:
     string getCPF() const;
     string getNome() const;
     int getIdade() const;
-    astroStatus getStatus();
+    AstronautaEnum getStatus();
     bool getDisponibilidade();
     void mataAstro();
     void setDisponivel();
